@@ -3,7 +3,6 @@
     "name": "MudHelp-Your application for transport Objetcts",
     "slug": "mudhelp",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android",
@@ -29,7 +28,6 @@
     "android": {
       "package": "com.teste.cloneuber",
       "versionCode": 1,
-
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
