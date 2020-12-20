@@ -1,3 +1,4 @@
 tasks:
-  - init: cd mudhelp npm install
+  - before: cd mudhelp
+   init:  npm install
     command: yarn start --tunnel
