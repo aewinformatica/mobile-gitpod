@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "expo": "^39.0.0",
     "expo-cli": "^4.0.15",
     "react": "16.13.1",
@@ -19,7 +20,8 @@
     "react-native-maps": "0.27.1",
     "react-native-maps-directions": "^1.7.3",
     "react-native-web": "~0.13.7",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@types/react": "~16.9.35",

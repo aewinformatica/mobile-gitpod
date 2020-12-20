@@ -18,7 +18,7 @@ export default class Details extends Component {
         <TypeTitle> Popular </TypeTitle>
         <TypeDescription> Viagens baratas para o transporte do seus objetos do dia a dia </TypeDescription>
         <TypeImage source={uberx} />
-        <TypeTitle>MudHelpX</TypeTitle>
+        <TypeTitle>MudHelpX By Wagner</TypeTitle>
         <TypeDescription>R$6,00 </TypeDescription>
 
         <RequestButton onPress={() => {}}>
