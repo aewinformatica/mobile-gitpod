@@ -24,7 +24,6 @@
     "yarn": "^1.22.11"
   },
   "devDependencies": {
-    "@expo/ngrok": "^4.1.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "babel-preset-expo": "^8.3.0",
