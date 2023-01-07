@@ -2,7 +2,7 @@ import React from "react";
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, Image, View, Dimensions } from "react-native";
 import Geocoder from "react-native-geocoding";
-
+import * as Location from 'expo-location';
 import { getPixelSize } from "../../utils";
 
 import Search from "../Search";
@@ -21,6 +21,7 @@ import {
   Back
 } from "./styles";
 Geocoder.init("AIzaSyBMBCO0DNDDAYVpsLa_OclrYlvSfkrRDZk");
+Location.installWebGeolocationPolyfill();
 export default class Map extends React.Component {
   state = {
     region: null,
@@ -28,6 +29,7 @@ export default class Map extends React.Component {
     duration: null,
     location: null
   };
+
   async componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       //Sucesso
@@ -53,6 +55,7 @@ export default class Map extends React.Component {
         maximumAge: 1000
       }
     );
+
   }
 
   handleLocationSelected = (data, { geometry }) => {
