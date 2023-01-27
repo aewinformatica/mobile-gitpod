@@ -21,7 +21,6 @@ import {
   Back
 } from "./styles";
 Geocoder.init("AIzaSyBMBCO0DNDDAYVpsLa_OclrYlvSfkrRDZk");
-Location.installWebGeolocationPolyfill();
 export default class Map extends React.Component {
   state = {
     region: null,
@@ -31,30 +30,23 @@ export default class Map extends React.Component {
   };
 
   async componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      //Sucesso
-      async ({ coords: { latitude, longitude } }) => {
-        const response = await Geocoder.from({ latitude, longitude });
-        const address = response.results[0].formatted_address;
-        const location = address.substring(0, address.indexOf(","));
-        this.setState({
-          location,
-          region: {
-            latitude,
-            longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }
-        });
-      },
-      //Erro
-      () => {},
-      {
-        timeout: 5000,
-        enableHighAccuracy: true,
-        maximumAge: 1000
+    const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync({
+      accuracy:Location.LocationAccuracy.BestForNavigation
+    })
+
+    const response = await Geocoder.from({ latitude, longitude });
+    const address = response.results[0].formatted_address;
+    const location = address.substring(0, address.indexOf(","));
+    
+    this.setState({
+      location,
+      region: {
+        latitude,
+        longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
       }
-    );
+    });
 
   }
 
