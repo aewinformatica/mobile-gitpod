@@ -1,4 +1,4 @@
 tasks:
   - before: cd ./mudhelp
-    init:  npm install yarn add expo-cli 
+    init:  yarn add expo-cli 
     command: yarn start --tunnel

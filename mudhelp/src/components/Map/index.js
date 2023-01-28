@@ -12,6 +12,7 @@ import Details from "../Details";
 import markerImage from "../../../assets/marker.png";
 import backimage from "../../../assets/back.png";
 
+Location.installWebGeolocationPolyfill();
 import {
   LocationBox,
   LocationText,
@@ -30,25 +31,31 @@ export default class Map extends React.Component {
   };
 
   async componentDidMount() {
-    const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync({
-      accuracy:Location.LocationAccuracy.BestForNavigation
+    navigator.geolocation.getCurrentPosition(
+      //Sucesso
+      async ({ coords: { latitude, longitude } }) => {
+        const response = await Geocoder.from({ latitude, longitude });
+        const address = response.results[0].formatted_address;
+        const location = address.substring(0, address.indexOf(","));
+        this.setState({
+          location,
+          region: {
+            latitude,
+            longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }
+        });
+      },
+      //Erro
+      () => {},
+      {
+        timeout: 5000,
+        enableHighAccuracy: true,
+        maximumAge: 1000
     })
 
-    const response = await Geocoder.from({ latitude, longitude });
-    const address = response.results[0].formatted_address;
-    const location = address.substring(0, address.indexOf(","));
-    
-    this.setState({
-      location,
-      region: {
-        latitude,
-        longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
-      }
-    });
-
-  }
+    };
 
   handleLocationSelected = (data, { geometry }) => {
     const {
